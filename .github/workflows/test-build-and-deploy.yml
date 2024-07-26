@@ -38,8 +38,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: test
-        run: ${{ needs.test.outputs.status }}
       - name: Build and Deploy Pages
         id: deployment
         uses: firmanrosid/experiment/build-and-deploy-pages@master
