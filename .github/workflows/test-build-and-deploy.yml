@@ -13,6 +13,7 @@ jobs:
         uses: firmanrosid/experiment/test@master
 
   build-and-deploy:
+    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -41,6 +42,7 @@ jobs:
           destination: ./_site
 
   report:
+    needs: build-and-deploy
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification
