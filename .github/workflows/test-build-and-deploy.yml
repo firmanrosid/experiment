@@ -7,9 +7,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # outputs:
+    #   status: ${{ steps.report.outputs.status }}
+    #   message: ${{ steps.report.outputs.message }}
 
     steps:
       - name: Run Test
+        id: test
         uses: firmanrosid/experiment/test@master
 
   build-and-deploy:
@@ -35,6 +39,7 @@ jobs:
 
     steps:
       - name: Build and Deploy Pages
+        id: deployment
         uses: firmanrosid/experiment/build-and-deploy-pages@master
         with:
           ref: gh-pages

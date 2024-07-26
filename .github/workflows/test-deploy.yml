@@ -1,4 +1,4 @@
-name: build-and-deploy-gh-pages
+name: deploy-gh-pages
 
 on:
   # Allows you to run this workflow manually from the Actions tab
