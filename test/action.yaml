@@ -1,0 +1,24 @@
+name: 'Run Test'
+description: 'Run Test'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checking out repository
+      uses: actions/checkout@v4
+
+    - name: Run test
+      run: |-
+        cp -r report report-cp
+
+    - name: Extract values from json
+      id: report
+      run: |
+        ls -la
+        chmod +x ./test/report.sh
+        ./test/report.sh report-cp/report.json
+
+    - name: Display extracted values
+      run: |
+        echo "Status: ${{ steps.report.outputs.status }}"
+        echo "Message: ${{ steps.report.outputs.message }}"

@@ -1,0 +1,9 @@
+name: 'Deploy Pages'
+description: 'Deploy the site to GitHub Pages'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Deploy to github pages
+      id: deployment
+      uses: actions/deploy-pages@v4

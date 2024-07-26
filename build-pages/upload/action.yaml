@@ -1,0 +1,34 @@
+name: 'Build Pages'
+description: 'Build the site using Jekyll and prepare for deployment'
+inputs:
+  ref:
+    description: 'Git reference to checkout'
+    required: true
+  source:
+    description: 'Source directory for Jekyll build'
+    required: true
+    default: './'
+  destination:
+    description: 'Destination directory for Jekyll build'
+    required: true
+    default: './_site'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.ref }}
+
+    - name: Setup pages
+      uses: actions/configure-pages@v5
+
+    - name: Build with jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: ./
+        destination: ./_site
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
