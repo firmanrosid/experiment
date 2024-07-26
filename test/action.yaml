@@ -26,8 +26,8 @@ runs:
         echo "Status: ${{ steps.report.outputs.status }}"
         echo "Message: ${{ steps.report.outputs.message }}"
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./report-cp
+    # - name: Deploy
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: ./report-cp
