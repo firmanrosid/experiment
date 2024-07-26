@@ -7,9 +7,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    # outputs:
-    #   status: ${{ steps.report.outputs.status }}
-    #   message: ${{ steps.report.outputs.message }}
+    outputs:
+      status: ${{ steps.test.outputs.status }}
+      message: ${{ steps.test.outputs.message }}
 
     steps:
       - name: Run Test
@@ -38,6 +38,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      - name: test
+        run: ${{ needs.test.outputs.status }}
       - name: Build and Deploy Pages
         id: deployment
         uses: firmanrosid/experiment/build-and-deploy-pages@master
@@ -47,7 +49,7 @@ jobs:
           destination: ./_site
 
   report:
-    needs: build-and-deploy
+    needs: [test, build-and-deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification
