@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Run Test
-        uses: firmanrosid/experiment/test
+        uses: firmanrosid/experiment/test@master
 
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Build and Deploy Pages
-        uses: firmanrosid/experiment/build-and-deploy-pages
+        uses: firmanrosid/experiment/build-and-deploy-pages@master
         with:
           ref: gh-pages
           source: ./
@@ -42,7 +42,6 @@ jobs:
 
   report:
     runs-on: ubuntu-latest
-
     steps:
       - name: Slack Notification
         uses: tokorom/action-slack-incoming-webhook@main
