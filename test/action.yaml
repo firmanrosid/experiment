@@ -1,13 +1,13 @@
 name: "Run Test"
 description: "Run Test"
 
-# outputs:
-#   status:
-#     description: 'Extracted status value'
-#     value: ${{ steps.report.outputs.status }}
-#   message:
-#     description: 'Extracted message value'
-#     value: ${{ steps.report.outputs.message }}
+outputs:
+  status:
+    description: 'Extracted status value'
+    value: ${{ steps.report.outputs.status }}
+  message:
+    description: 'Extracted message value'
+    value: ${{ steps.report.outputs.message }}
 
 runs:
   using: "composite"
@@ -20,7 +20,7 @@ runs:
       run: |-
         cp -r report report-cp
 
-    - name: Extract values from json
+    - name: Extract values from json and send to github output
       id: report
       shell: bash
       run: |
