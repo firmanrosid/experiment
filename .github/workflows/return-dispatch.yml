@@ -14,7 +14,6 @@ jobs:
 
       - name: Dispatch an action and get the run ID and URL
         uses: codex-/return-dispatch@v1
-        id: return_dispatch
         with:
           token: ${{ secrets.PAT_TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
           ref: ${{ github.ref }}
@@ -23,7 +22,6 @@ jobs:
           workflow: test-deploy.yml
           workflow_timeout_seconds: 90 # Default: 300
 
-      - name: Use the output run ID and URL
+      - name: Send report
         run: |
-          echo ${{steps.return_dispatch.outputs.run_id}}
-          echo ${{steps.return_dispatch.outputs.run_url}}
+          echo "Send report"

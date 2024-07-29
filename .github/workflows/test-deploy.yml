@@ -65,4 +65,5 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+        if: always()
         run: echo ${{ github.event.inputs.distinct_id }}
