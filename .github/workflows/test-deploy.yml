@@ -77,6 +77,6 @@ jobs:
           ARTIFACT_FILENAME: report-cp.zip
         with:
           script: |
-            const script = require('./download-artifact/download-previous-artifact.js')
+            const script = require('./download-artifact/index.js')
             await script({github, context, core})
       - run: ls -la
