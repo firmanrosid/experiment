@@ -43,7 +43,7 @@ module.exports = async ({ github, context, core }) => {
         archive_format: "zip",
       });
 
-      fs(
+      fs.writeFileSync(
         process.env.ARTIFACT_FILENAME,
         Buffer.from(response.data)
       );
