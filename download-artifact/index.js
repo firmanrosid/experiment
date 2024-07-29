@@ -1,5 +1,5 @@
-import { writeFileSync } from "fs";
-import { execSync } from "child_process";
+const fs = require("fs");
+const { execSync } = require("child_process");
 
 export default async ({ github, context, core }) => {
   const owner = context.repo.owner;
@@ -43,7 +43,7 @@ export default async ({ github, context, core }) => {
         archive_format: "zip",
       });
 
-      writeFileSync(
+      fs(
         process.env.ARTIFACT_FILENAME,
         Buffer.from(response.data)
       );
