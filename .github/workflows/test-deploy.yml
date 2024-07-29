@@ -2,8 +2,6 @@ name: test-deploy
 
 on:
   workflow_dispatch:
-    inputs:
-      distinct_id:
 
 jobs:
   build-pages:

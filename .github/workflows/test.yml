@@ -2,6 +2,9 @@ name: test
 
 on:
   workflow_dispatch:
+    inputs:
+      distinct_id:
+        description: "distinct_id"
 
 jobs:
   test:

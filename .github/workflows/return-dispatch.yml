@@ -19,7 +19,7 @@ jobs:
           ref: master # or refs/heads/target_branch
           repo: experiment
           owner: firmanrosid
-          workflow: test-deploy.yml
+          workflow: test.yml
           # workflow_inputs: '{ "run_id": ${{ github.run_id }} }' # Optional
           workflow_timeout_seconds: 300 # Default: 300
 

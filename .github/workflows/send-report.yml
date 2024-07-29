@@ -2,8 +2,6 @@ name: send-report
 
 on:
   workflow_dispatch:
-    inputs:
-      distinct_id:
 
 jobs:
   send-report:
