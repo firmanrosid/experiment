@@ -2,10 +2,12 @@ name: test-deploy
 
 on:
   workflow_dispatch:
+  push:
+    branches: gh-pages
 
 jobs:
   build-pages:
-    runs-on: ktbs-build-deploy-runner
+    runs-on: ubuntu-latest
     timeout-minutes: 30
 
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -52,7 +54,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ktbs-build-deploy-runner
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: build-pages
 
@@ -69,7 +71,7 @@ jobs:
       - name: Download artifact
         uses: firmanrosid/experiment/download-artifact@master
         continue-on-error: true
-        env:
+        with:
           ARTIFACT_NAME: report-cp
           ARTIFACT_FILENAME: report-cp.zip
       - run: ls -la
