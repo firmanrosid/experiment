@@ -16,12 +16,12 @@ jobs:
         uses: codex-/return-dispatch@v1
         id: return_dispatch
         with:
-          token: ${{ secrets.TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
+          token: ${{ secrets.PAT_TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
           ref: ${{ github.ref }}
           repo: experiment
           owner: firmanrosid
           workflow: test-deploy.yml
-          workflow_timeout_seconds: 60 # Default: 300
+          workflow_timeout_seconds: 90 # Default: 300
 
       - name: Use the output run ID and URL
         run: |

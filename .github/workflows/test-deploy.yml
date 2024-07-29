@@ -63,3 +63,6 @@ jobs:
       - name: Deploy to gitHub pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+        run: echo ${{ github.event.inputs.distinct_id }}
