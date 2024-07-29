@@ -3,7 +3,8 @@ name: test-deploy
 on:
   workflow_dispatch:
   push:
-    branches: gh-pages
+    branches:
+      - gh-pages
 
 jobs:
   build-pages:
@@ -69,9 +70,13 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: firmanrosid/experiment/download-artifact@master
+        uses: actions/github-script@v6
         continue-on-error: true
-        with:
+        env:
           ARTIFACT_NAME: report-cp
           ARTIFACT_FILENAME: report-cp.zip
+        with:
+          script: |
+            const script = require('./download-artifact/download-previous-artifact.js')
+            await script({github, context, core})
       - run: ls -la
