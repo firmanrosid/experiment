@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.test.outputs.status }}
+      message: ${{ steps.test.outputs.message }}
 
     steps:
       - name: Run Test
