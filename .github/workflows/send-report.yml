@@ -2,8 +2,8 @@ name: send-report
 
 on:
   workflow_dispatch:
-    distinct_id:
     inputs:
+      distinct_id:
       run_id:
         description: "run_id"
         required: true
