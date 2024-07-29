@@ -1,0 +1,41 @@
+name: "Send Report"
+description: "Send Report"
+
+outputs:
+  status:
+    description: 'Extracted status value'
+    value: ${{ steps.report.outputs.status }}
+  message:
+    description: 'Extracted message value'
+    value: ${{ steps.report.outputs.message }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checking out repository
+      uses: actions/checkout@v4
+
+    - name: Run test
+      shell: bash
+      run: |-
+        cp -r report report-cp
+
+    - name: Extract values from json and send to github output
+      id: report
+      shell: bash
+      run: |
+        ls -la
+        chmod +x ./test/report.sh
+        ./test/report.sh report-cp/report.json
+
+    - name: Display extracted values
+      shell: bash
+      run: |
+        echo "Status: ${{ steps.report.outputs.status }}"
+        echo "Message: ${{ steps.report.outputs.message }}"
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./report-cp

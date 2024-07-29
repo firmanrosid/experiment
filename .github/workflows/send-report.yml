@@ -2,6 +2,10 @@ name: send-report
 
 on:
   workflow_dispatch:
+    inputs:
+      run_id:
+        description: "run_id"
+        required: true
 
 jobs:
   send-report:
@@ -23,3 +27,5 @@ jobs:
             await script({github, context, core})
       - name: Run bash script
         run: ls -la
+      - name: Run id
+        run: echo ${{ github.event.inputs.run_id }}
