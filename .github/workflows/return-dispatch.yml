@@ -14,12 +14,14 @@ jobs:
       - name: Run Test
         id: test
         uses: firmanrosid/experiment/test@master
+        with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Dispatch an action and get the run ID and URL
         uses: codex-/return-dispatch@v1
         id: return_dispatch
         with:
-          token: ${{ secrets.TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
+          token: ${{ secrets.PAT_TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
           ref: ${{ github.ref }}
           repo: experiment
           owner: firmanrosid

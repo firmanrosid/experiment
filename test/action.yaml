@@ -4,7 +4,6 @@ description: "Run Test"
 inputs:
   gh_token:
     description: "Github token"
-    value: ${{ secrets.GITHUB_TOKEN }}
 outputs:
   status:
     description: "Extracted status value"
