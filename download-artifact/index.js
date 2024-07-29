@@ -12,7 +12,7 @@ module.exports = async ({ github, context, core }) => {
     owner,
     repo,
     status: "success",
-    per_page: 3, // Fetch more runs to increase the chance of finding the artifact
+    per_page: 15, // Fetch more runs to increase the chance of finding the artifact
   });
 
   if (runs.data.total_count === 0) {
