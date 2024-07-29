@@ -1,11 +1,13 @@
-const fs = require("fs");
-const { execSync } = require("child_process");
-const core = require("@actions/core");
-const github = require("@actions/github");
-
-module.exports = async () => {
+module.exports = async ({
+  github,
+  context,
+  core
+}) => {
   const owner = github.context.repo.owner;
   const repo = github.context.repo.repo;
+
+  console.log("owner:", owner);
+  console.log("repo:", repo);
 
   const runs = await github.rest.actions.listWorkflowRunsForRepo({
     owner,
