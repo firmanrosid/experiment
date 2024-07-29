@@ -1,8 +1,4 @@
-module.exports = async ({
-  github,
-  context,
-  core
-}) => {
+module.exports = async ({ github, context, core }) => {
   const owner = context.repo.owner;
   const repo = context.repo.repo;
 
@@ -44,12 +40,11 @@ module.exports = async ({
         archive_format: "zip",
       });
 
-      fs.writeFileSync(
+      require("fs").writeFileSync(
         process.env.ARTIFACT_FILENAME,
         Buffer.from(response.data)
       );
-
-      execSync(
+      require("child_process").execSync(
         `unzip -o ${process.env.ARTIFACT_FILENAME}`
       );
 
