@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checking out repository
+        uses: actions/checkout@v4
+
       - name: Download artifact
         uses: actions/github-script@v6
         continue-on-error: true
@@ -18,4 +21,5 @@ jobs:
           script: |
             const script = require('./download-artifact/index.js')
             await script({github, context, core})
-      - run: ls -la
+      - name: Run bash script
+        run: ls -la
