@@ -15,7 +15,7 @@ jobs:
         uses: codex-/return-dispatch@v1
         id: return_dispatch
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
+          token: ${{ secrets.TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
           ref: master # or refs/heads/target_branch
           repo: experiment
           owner: firmanrosid
