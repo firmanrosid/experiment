@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
 
-export default async ({ github, context, core }) => {
+module.exports = async ({ github, context, core }) => {
   const owner = context.repo.owner;
   const repo = context.repo.repo;
 
