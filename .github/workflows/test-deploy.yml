@@ -2,9 +2,8 @@ name: test-deploy
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - gh-pages
+    inputs:
+      distinct_id:
 
 jobs:
   build-pages:
