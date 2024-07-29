@@ -3,8 +3,8 @@ module.exports = async ({
   context,
   core
 }) => {
-  const owner = github.context.repo.owner;
-  const repo = github.context.repo.repo;
+  const owner = context.repo.owner;
+  const repo = context.repo.repo;
 
   console.log("owner:", owner);
   console.log("repo:", repo);
