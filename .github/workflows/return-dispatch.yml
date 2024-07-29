@@ -6,13 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.test.outputs.status }}
-      message: ${{ steps.test.outputs.message }}
-
     steps:
       - name: Run Test
-        id: test
         uses: firmanrosid/experiment/test@master
         with:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,7 +20,7 @@ jobs:
           ref: ${{ github.ref }}
           repo: experiment
           owner: firmanrosid
-          workflow: test.yml
+          workflow: test-deploy.yml
           workflow_timeout_seconds: 60 # Default: 300
 
       - name: Use the output run ID and URL
