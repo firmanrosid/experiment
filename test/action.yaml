@@ -3,10 +3,10 @@ description: "Run Test"
 
 outputs:
   status:
-    description: 'Extracted status value'
+    description: "Extracted status value"
     value: ${{ steps.report.outputs.status }}
   message:
-    description: 'Extracted message value'
+    description: "Extracted message value"
     value: ${{ steps.report.outputs.message }}
 
 runs:
@@ -19,6 +19,10 @@ runs:
       shell: bash
       run: |-
         cp -r report report-cp
+
+        FILE_PATH="report-cp/report.json"
+        TIMESTAMP=$(date +"%H:%M:%S")
+        jq --arg time "$TIMESTAMP" '.message = $time' $FILE_PATH > tmp.json && mv tmp.json $FILE_PATH
 
     - name: Extract values from json and send to github output
       id: report

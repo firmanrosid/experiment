@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  send-report:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run test
-        run: echo "Start test"
+      - name: Run Test
+        id: test
+        uses: firmanrosid/experiment/test@master
 
       - name: Dispatch an action and get the run ID and URL
         uses: codex-/return-dispatch@v1
