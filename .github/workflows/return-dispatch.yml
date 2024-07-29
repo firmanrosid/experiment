@@ -16,11 +16,10 @@ jobs:
         id: return_dispatch
         with:
           token: ${{ secrets.TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
-          ref: master # or refs/heads/target_branch
+          ref: ${{ github.ref }}
           repo: experiment
           owner: firmanrosid
           workflow: test.yml
-          # workflow_inputs: '{ "run_id": ${{ github.run_id }} }' # Optional
           workflow_timeout_seconds: 60 # Default: 300
 
       - name: Use the output run ID and URL
