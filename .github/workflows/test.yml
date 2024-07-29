@@ -1,0 +1,44 @@
+name: test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v4
+
+      - name: Run test
+        shell: bash
+        run: |-
+          cp -r report report-cp
+
+      - name: Extract values from json and send to github output
+        id: report
+        shell: bash
+        run: |
+          ls -la
+          chmod +x ./test/report.sh
+          ./test/report.sh report-cp/report.json
+
+      - name: Display extracted values
+        shell: bash
+        run: |
+          echo "Status: ${{ steps.report.outputs.status }}"
+          echo "Message: ${{ steps.report.outputs.message }}"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-cp
+          path: report-cp
+          retention-days: 1
