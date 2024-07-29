@@ -63,20 +63,3 @@ jobs:
       - name: Deploy to gitHub pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  send-report:
-    runs-on: ubuntu-latest
-    needs: deploy-pages
-
-    steps:
-      - name: Download artifact
-        uses: actions/github-script@v6
-        continue-on-error: true
-        env:
-          ARTIFACT_NAME: report-cp
-          ARTIFACT_FILENAME: report-cp.zip
-        with:
-          script: |
-            const script = require('./download-artifact/index.js')
-            await script({github, context, core})
-      - run: ls -la
