@@ -12,13 +12,18 @@ jobs:
         with:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: get repository name
+        run: |-
+          REPOSITORY_OWNER_SLASH_NAME=${{ github.repository }}
+          echo "REPOSITORY_NAME=${REPOSITORY_OWNER_SLASH_NAME##*/}"  >> $GITHUB_ENV
+
       - name: Dispatch an action and get the run ID and URL
         uses: codex-/return-dispatch@v1
         id: return_dispatch
         with:
           token: ${{ secrets.PAT_TOKEN }} # Note this is NOT GITHUB_TOKEN but a PAT
           ref: ${{ github.ref }}
-          repo: ${{ github.repository }}
+          repo: ${{ env.REPOSITORY_NAME }}
           owner: ${{ github.repository_owner }}
           workflow: test-deploy.yml
           workflow_timeout_seconds: 90 # Default: 300
