@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       distinct_id:
+        description: "distinct_id"
+        required: true
       run_id:
         description: "run_id"
         required: true
@@ -29,4 +31,6 @@ jobs:
       - name: Run bash script
         run: ls -la
       - name: Run id
-        run: echo ${{ github.event.inputs.run_id }}
+        run: |
+          echo ${{ github.event.inputs.distinct_id }}
+          echo ${{ github.event.inputs.run_id }}
