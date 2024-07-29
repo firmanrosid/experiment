@@ -1,4 +1,7 @@
-module.exports = async ({ github, context, core }) => {
+import { writeFileSync } from "fs";
+import { execSync } from "child_process";
+
+export default async ({ github, context, core }) => {
   const owner = context.repo.owner;
   const repo = context.repo.repo;
 
@@ -40,13 +43,11 @@ module.exports = async ({ github, context, core }) => {
         archive_format: "zip",
       });
 
-      require("fs").writeFileSync(
+      writeFileSync(
         process.env.ARTIFACT_FILENAME,
         Buffer.from(response.data)
       );
-      require("child_process").execSync(
-        `unzip -o ${process.env.ARTIFACT_FILENAME}`
-      );
+      execSync(`unzip -o ${process.env.ARTIFACT_FILENAME} -d .`);
 
       console.log("Artifact downloaded successfully");
       artifactFound = true;
