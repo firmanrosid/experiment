@@ -2,6 +2,7 @@ name: send-report
 
 on:
   workflow_dispatch:
+    distinct_id:
     inputs:
       run_id:
         description: "run_id"
