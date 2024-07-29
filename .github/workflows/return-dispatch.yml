@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Run test
+        run: echo "Start test"
+
       - name: Dispatch an action and get the run ID and URL
         uses: codex-/return-dispatch@v1
         id: return_dispatch
@@ -16,9 +19,9 @@ jobs:
           ref: master # or refs/heads/target_branch
           repo: experiment
           owner: firmanrosid
-          workflow: send-report.yml
-          workflow_inputs: '{ "run_id": ${{ github.run_id }} }' # Optional
-          workflow_timeout_seconds: 5 # Default: 300
+          workflow: test-deploy.yml
+          # workflow_inputs: '{ "run_id": ${{ github.run_id }} }' # Optional
+          workflow_timeout_seconds: 10 # Default: 300
 
       - name: Use the output run ID and URL
         run: |
